@@ -1,4 +1,4 @@
-<div class="min-h-screen min-w-screen flex justify-center items-center">
+<div class="min-h-dvh w-screen flex flex-col justify-center items-center overflow-hidden">
   <form
     [formGroup]="calculatorForm"
     class="rounded-lg border bg-card shadow-sm w-full max-w-3xl p-6"
@@ -111,9 +111,11 @@
       <div class="border-t border-gray-200 dark:border-gray-800 w-full py-8">
         <div class="grid grid-cols-2 items-center gap-4">
           <div class="text-xl font-medium">Valor futuro</div>
-          <div class="text-2xl font-bold text-right">${{ futuredValue }}</div>
+          <div class="text-2xl font-bold text-right">${{ futuredValue | parseNumber }}</div>
         </div>
       </div>
     </div>
+    <p class="text-center text-gray-500">Created by {{ user }}</p>
   </form>
 </div>
+

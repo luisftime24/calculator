@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'compounding-calculator';
   calculatorForm!: FormGroup;
   futuredValue: number = 0;
+  user = '<Luis Chota>'
   frequencyOptions = [
     { value: 'annually', label: 'Anual', times: 1 },
     { value: 'semi-annually', label: 'Semestral', times: 2 },
