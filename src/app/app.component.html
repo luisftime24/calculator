@@ -23,6 +23,8 @@
           <input
             formControlName="principal"
             type="number"
+            inputmode="numeric"
+            pattern="[0-9]*"
             class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
             id="initial"
             placeholder="Ingresa tu capital inicial"
@@ -36,6 +38,8 @@
           <input
             formControlName="annualAddition"
             type="number"
+            inputmode="numeric"
+            pattern="[0-9]*"
             class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
             id="addition"
             placeholder="Ingresa tu adición anual"
@@ -47,6 +51,8 @@
           <input
             formControlName="yearsToGrow"
             type="number"
+            inputmode="numeric"
+            pattern="[0-9]*"
             class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
             id="years"
             placeholder="Ingresa el número de años"
@@ -60,6 +66,8 @@
           <input
             formControlName="interestRate"
             type="number"
+            inputmode="numeric"
+            pattern="[0-9]*"
             class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
             id="rate"
             placeholder="Ingresa tu tasa de interés anual"
