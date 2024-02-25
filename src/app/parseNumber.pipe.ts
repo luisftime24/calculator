@@ -15,7 +15,7 @@ export class ParseNumberPipe implements PipeTransform {
     // Separa la parte entera de la parte decimal
     const parts = stringValue.split('.');
     const integerPart = parts[0];
-    const decimalPart = parts.length > 1 ? '.' + parts[1] : '';
+    const decimalPart = parts.length > 1 ? '.' + parts[1] : '.00';
 
     // Agrega comas como separadores de miles
     const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');

@@ -1,13 +1,13 @@
-<div class="min-h-dvh w-screen flex flex-col justify-center items-center overflow-hidden">
+<div
+  class="min-h-dvh w-screen flex flex-col justify-center items-center overflow-hidden"
+>
   <form
     [formGroup]="calculatorForm"
     class="rounded-lg border bg-card shadow-sm w-full max-w-3xl p-6"
     (ngSubmit)="onSubmit()"
   >
     <div class="flex flex-col space-y-1.5 p-6">
-      <h3
-        class="text-2xl font-semibold leading-none tracking-tight"
-      >
+      <h3 class="text-2xl font-semibold leading-none tracking-tight">
         Calculadora de interés compuesto
       </h3>
       <p class="text-sm text-muted-foreground">
@@ -17,34 +17,65 @@
     <div class="p-6 space-y-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="space-y-2">
-          <label class="text-sm font-medium" for="initial"
+          <label class="text-sm font-medium" for="principal"
             >Capital inicial</label
           >
-          <input
-            formControlName="principal"
-            type="number"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
-            id="initial"
-            placeholder="Ingresa tu capital inicial"
-            min="0"
-          />
+          <div class="relative">
+            <input
+              formControlName="principal"
+              type="number"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
+              id="principal"
+              placeholder="Ingresa tu capital inicial"
+              min="0"
+              (focus)="principalIsFocus = true"
+              (blur)="principalIsFocus = false"
+              [class.text-transparent]="!principalIsFocus"
+            />
+            <div
+              for="principal"
+              (click)="focusInput('principal')"
+              *ngIf="
+                calculatorForm.get('principal')?.value && !principalIsFocus
+              "
+              class="text-sm absolute top-[10px] left-[12px]"
+            >
+              {{ calculatorForm.get("principal")?.value | parseNumber }}
+            </div>
+          </div>
         </div>
         <div class="space-y-2">
-          <label class="text-sm font-medium" for="addition"
+          <label class="text-sm font-medium" for="annualAddition"
             >Adición anual</label
           >
-          <input
-            formControlName="annualAddition"
-            type="number"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
-            id="addition"
-            placeholder="Ingresa tu adición anual"
-            min="0"
-          />
+          <div class="relative">
+            <input
+              formControlName="annualAddition"
+              type="number"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
+              id="annualAddition"
+              placeholder="Ingresa tu adición anual"
+              min="0"
+              (focus)="annualAdditionIsFocus = true"
+              (blur)="annualAdditionIsFocus = false"
+              [class.text-transparent]="!annualAdditionIsFocus"
+            />
+            <div
+              for="annualAddition"
+              (click)="focusInput('annualAddition')"
+              *ngIf="
+                calculatorForm.get('annualAddition')?.value &&
+                !annualAdditionIsFocus
+              "
+              class="text-sm absolute top-[10px] left-[12px]"
+            >
+              {{ calculatorForm.get("annualAddition")?.value | parseNumber }}
+            </div>
+          </div>
         </div>
         <div class="space-y-2">
           <label class="text-sm font-medium" for="years">Número de años</label>
@@ -60,20 +91,30 @@
           />
         </div>
         <div class="space-y-2">
-          <label class="text-sm font-medium" for="rate"
+          <label class="text-sm font-medium" for="interestRate"
             >Tasa de interés anual (%)</label
           >
-          <input
-            formControlName="interestRate"
-            type="number"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
-            id="rate"
-            placeholder="Ingresa tu tasa de interés anual"
-            min="0"
-            step="0.1"
-          />
+          <div class="relative">
+            <input
+              formControlName="interestRate"
+              type="number"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
+              id="interestRate"
+              placeholder="Ingresa tu tasa de interés anual"
+              min="0"
+            />
+            <div
+              for="interestRate"
+              (click)="focusInput('interestRate')"
+              *ngIf="calculatorForm.get('interestRate')?.value"
+              class="text-sm text-transparent absolute top-[10px] left-[12px]"
+            >
+              {{ calculatorForm.get("interestRate")?.value
+              }}<span class="text-black">%</span>
+            </div>
+          </div>
         </div>
         <div class="space-y-2">
           <label class="text-sm font-medium" for="frequency"
@@ -111,11 +152,12 @@
       <div class="border-t border-gray-200 dark:border-gray-800 w-full py-8">
         <div class="grid grid-cols-2 items-center gap-4">
           <div class="text-xl font-medium">Valor futuro</div>
-          <div class="text-2xl font-bold text-right">${{ futuredValue | parseNumber }}</div>
+          <div class="text-2xl font-bold text-right">
+            ${{ futuredValue | parseNumber }}
+          </div>
         </div>
       </div>
     </div>
     <p class="text-center text-gray-500">Created by {{ user }}</p>
   </form>
 </div>
-

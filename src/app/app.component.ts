@@ -18,6 +18,10 @@ export class AppComponent implements OnInit {
     { value: 'monthly', label: 'Mensual', times: 12 },
   ];
 
+  principalIsFocus: boolean = false;
+  annualAdditionIsFocus: boolean = false;
+  interestRateIsFocus: boolean = false;
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -50,6 +54,11 @@ export class AppComponent implements OnInit {
         frequencyTimes!
       ).toFixed(2));
     }
+  }
+
+  public focusInput(id: string): void {
+    const inputElement = document.getElementById(id)!;
+    inputElement.focus();
   }
 
   public resetValues(): void {
