@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
 
   principalIsFocus: boolean = false;
   annualAdditionIsFocus: boolean = false;
-  interestRateIsFocus: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 

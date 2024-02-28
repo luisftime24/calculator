@@ -1,12 +1,12 @@
 <div
-  class="min-h-dvh w-screen flex flex-col justify-center items-center overflow-hidden"
+  class="flex w-screen flex-col items-center justify-center min-h-dvh"
 >
   <form
     [formGroup]="calculatorForm"
-    class="rounded-lg border bg-card shadow-sm w-full max-w-3xl p-6"
+    class="w-full max-w-3xl rounded-lg border p-6 shadow-sm bg-card"
     (ngSubmit)="onSubmit()"
   >
-    <div class="flex flex-col space-y-1.5 p-6">
+    <div class="flex flex-col p-6 space-y-1.5">
       <h3 class="text-2xl font-semibold leading-none tracking-tight">
         Calculadora de interés compuesto
       </h3>
@@ -15,10 +15,10 @@
       </p>
     </div>
     <div class="p-6 space-y-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div class="space-y-2">
           <label class="text-sm font-medium" for="principal"
-            >Capital inicial</label
+          >Capital inicial</label
           >
           <div class="relative">
             <input
@@ -26,7 +26,7 @@
               type="number"
               inputmode="numeric"
               pattern="[0-9]*"
-              class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
+              class="flex h-10 w-full rounded-md border px-3 py-2 text-sm bg-background"
               id="principal"
               placeholder="Ingresa tu capital inicial"
               min="0"
@@ -35,12 +35,11 @@
               [class.text-transparent]="!principalIsFocus"
             />
             <div
-              for="principal"
               (click)="focusInput('principal')"
               *ngIf="
                 calculatorForm.get('principal')?.value && !principalIsFocus
               "
-              class="text-sm absolute top-[10px] left-[12px]"
+              class="absolute text-sm top-[10px] left-[12px]"
             >
               {{ calculatorForm.get("principal")?.value | parseNumber }}
             </div>
@@ -48,7 +47,7 @@
         </div>
         <div class="space-y-2">
           <label class="text-sm font-medium" for="annualAddition"
-            >Adición anual</label
+          >Adición anual</label
           >
           <div class="relative">
             <input
@@ -56,7 +55,7 @@
               type="number"
               inputmode="numeric"
               pattern="[0-9]*"
-              class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
+              class="flex h-10 w-full rounded-md border px-3 py-2 text-sm bg-background"
               id="annualAddition"
               placeholder="Ingresa tu adición anual"
               min="0"
@@ -65,13 +64,12 @@
               [class.text-transparent]="!annualAdditionIsFocus"
             />
             <div
-              for="annualAddition"
               (click)="focusInput('annualAddition')"
               *ngIf="
                 calculatorForm.get('annualAddition')?.value &&
                 !annualAdditionIsFocus
               "
-              class="text-sm absolute top-[10px] left-[12px]"
+              class="absolute text-sm top-[10px] left-[12px]"
             >
               {{ calculatorForm.get("annualAddition")?.value | parseNumber }}
             </div>
@@ -84,7 +82,7 @@
             type="number"
             inputmode="numeric"
             pattern="[0-9]*"
-            class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
+            class="flex h-10 w-full rounded-md border px-3 py-2 text-sm bg-background"
             id="years"
             placeholder="Ingresa el número de años"
             min="1"
@@ -92,7 +90,7 @@
         </div>
         <div class="space-y-2">
           <label class="text-sm font-medium" for="interestRate"
-            >Tasa de interés anual (%)</label
+          >Tasa de interés anual (%)</label
           >
           <div class="relative">
             <input
@@ -100,29 +98,29 @@
               type="number"
               inputmode="numeric"
               pattern="[0-9]*"
-              class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
+              class="flex h-10 w-full rounded-md border px-3 py-2 text-sm bg-background"
               id="interestRate"
               placeholder="Ingresa tu tasa de interés anual"
               min="0"
             />
             <div
-              for="interestRate"
               (click)="focusInput('interestRate')"
               *ngIf="calculatorForm.get('interestRate')?.value"
-              class="text-sm text-transparent absolute top-[10px] left-[12px]"
+              class="absolute text-sm text-transparent top-[10px] left-[12px]"
             >
-              {{ calculatorForm.get("interestRate")?.value
+              {{
+                calculatorForm.get("interestRate")?.value
               }}<span class="text-black">%</span>
             </div>
           </div>
         </div>
         <div class="space-y-2">
           <label class="text-sm font-medium" for="frequency"
-            >Frecuencia de capitalización</label
+          >Frecuencia de capitalización</label
           >
           <select
             formControlName="compoundTimes"
-            class="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
+            class="flex h-10 w-full rounded-md border px-3 py-2 text-sm bg-background"
             id="frequency"
           >
             <option
@@ -136,23 +134,25 @@
       </div>
       <div class="flex items-center space-x-4">
         <button
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium bg-black text-white hover:bg-black/90 h-10 px-4 py-2"
+          class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-black/90"
           type="submit"
         >
           Calcular
         </button>
         <button
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+          class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md border px-4 py-2 text-sm font-medium bg-background hover:bg-accent hover:text-accent-foreground"
           type="button"
           (click)="resetValues()"
         >
           Reiniciar
         </button>
       </div>
-      <div class="border-t border-gray-200 dark:border-gray-800 w-full py-8">
-        <div class="grid grid-cols-2 items-center gap-4">
-          <div class="text-xl font-medium">Valor futuro</div>
-          <div class="text-2xl font-bold text-right">
+      <div class="w-full border-t border-gray-200 py-8 dark:border-gray-800">
+        <div class="flex justify-between items-center flex-wrap">
+          <div class="text-xl font-medium whitespace-nowrap overflow-ellipsis break-all">
+            Valor futuro
+          </div>
+          <div class="text-2xl font-bold break-all">
             ${{ futuredValue | parseNumber }}
           </div>
         </div>
